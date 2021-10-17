@@ -1,0 +1,7 @@
+{
+  "name": "DnD-Tools",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

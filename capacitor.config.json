@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "DnD-Tools",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

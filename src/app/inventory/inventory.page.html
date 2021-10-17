@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'Inventory' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type="number" value="{{iCopper}}" min="0"> CP: </ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input type="number" value="{{iSilver}}" min="0"> SP: </ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input type="number" value="{{iGold}}" min="0"> GP: </ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input type="number" value="{{iPlatinum}}" min="0"> PP: </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-scroll>
+        <ion-list>
+          <ion-item *ngFor="let aItem of aInventory">{{aItem}}</ion-item>
+        </ion-list>
+      </ion-scroll>
+    </ion-row>
+  </ion-grid>
+</ion-content>
