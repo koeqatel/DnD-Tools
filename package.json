@@ -1,10 +1,11 @@
 {
   "name": "DnD-Tools",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Koeqatel",
+  "homepage": "",
   "scripts": {
     "android": "ionic capacitor run android --target H3XDU17B10005902",
+    "android-live": "ionic capacitor run android --target H3XDU17B10005902 -l --host=192.168.178.50",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
