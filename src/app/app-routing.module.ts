@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'create-item',
     loadChildren: () => import('./create-item/create-item.module').then( m => m.CreateItemPageModule)
+  },
+  {
+    path: 'battlefield',
+    loadChildren: () => import('./battlefield/battlefield.module').then( m => m.BattlefieldPageModule)
   }
 ];
 @NgModule({
