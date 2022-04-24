@@ -20,15 +20,19 @@ const routes: Routes = [
         loadChildren: () => import('../create-item/create-item.module').then(m => m.CreateItemPageModule)
       },
       {
+        path: 'battlefield',
+        loadChildren: () => import('../battlefield/battlefield.module').then(m => m.BattlefieldPageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/inventory',
+        redirectTo: '/tabs/battlefield',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/inventory',
+    redirectTo: '/tabs/battlefield',
     pathMatch: 'full'
   }
 ];
