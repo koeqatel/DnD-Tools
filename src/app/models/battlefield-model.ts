@@ -66,6 +66,15 @@ export enum Skills
     Persuasion,
 }
 
+export enum SpeedTypes
+{
+    Land,
+    Fly,
+    Swim,
+    Burrow,
+    Climb
+}
+
 export class BattlefieldModel
 {
     constructor() { }
@@ -73,49 +82,47 @@ export class BattlefieldModel
     public async createEntity(
         sName: string,
         iHealth: number,
-        ArmorClass: number,
+        iArmorClass: number,
         iStrength: number,
         iDexterity: number,
         iConstitution: number,
         iIntelligence: number,
         iWisdom: number,
         iCharisma: number,
-        iSpeed: number,
-        aSkillModifiers: Map<Skills, number>,
+        aSpeed: [SpeedTypes, number][],
+        aSkillModifiers: [Skills, number][],
         iProficiencyBonus: number,
         aDamageResistances: Array<DamageType>,
         aDamageImmunities: Array<DamageType>,
         aConditionImmunities: Array<Conditions>)
     {
-        //TODO: Fix this
+        //TODO: Use alternate "Table"
         // await Storage.configure({
         //     group: "Entities"
         // });
 
-        let oEntity = new Entity(sName, iHealth, ArmorClass, iStrength, iDexterity, iConstitution, iIntelligence, iWisdom, iCharisma, iSpeed, aSkillModifiers, iProficiencyBonus, aDamageResistances, aDamageImmunities, aConditionImmunities);
-        this.storeEntity(oEntity);
+
+        let oEntity = new Entity(sName, iHealth, iArmorClass, iStrength, iDexterity, iConstitution, iIntelligence, iWisdom, iCharisma, aSpeed, aSkillModifiers, iProficiencyBonus, aDamageResistances, aDamageImmunities, aConditionImmunities);
+        await this.storeEntity(oEntity);
     }
 
     private async storeEntity(oEntity: Entity)
     {
         return new Promise((resolve, reject) =>
         {
-            this.getLastEntityId().then(async (iLastEntityId: number) =>
-            {
+            // this.getLastEntityId().then(async (iLastEntityId: number) =>
+            // {
 
-                let iEntityId = iLastEntityId ?? 0;
-                iEntityId++;
-                console.warn(iEntityId);
+            // let iEntityId = iLastEntityId ?? 0;
+            // iEntityId++;
+console.warn(oEntity["sName"]);
+            //TODO: Add TableName?
+            Storage.set({
+                key: oEntity["sName"],
+                value: JSON.stringify(oEntity),
+            });
 
-
-                //TODO: Add TableName?
-                await Storage.set({
-                    key: iEntityId.toString(),
-                    value: JSON.stringify(oEntity),
-                });
-
-                resolve;
-            })
+            resolve;
         });
 
 
@@ -132,7 +139,6 @@ export class BattlefieldModel
         {
             this.getAllEntityKeys().then((aKeys: Array<number>) =>
             {
-                console.warn(aKeys);
                 let aEntities = [];
                 aKeys.forEach(async iKey =>
                 {
@@ -155,8 +161,10 @@ export class BattlefieldModel
         {
             await Storage.keys().then(aKeys =>
             {
-                let aKeysAsInts = aKeys["keys"].map((i) => Number(i));
-                resolve(aKeysAsInts)
+                // let aKeysAsInts = aKeys["keys"].map((i) => Number(i));
+                // resolve(aKeysAsInts)
+
+                resolve(aKeys["keys"]);
             });
         });
     }
@@ -185,33 +193,42 @@ export class Entity
 {
     public sName: string;
     public iHealth: number;
-    public ArmorClass: number;
+    public iArmorClass: number;
     public iStrength: number;
     public iDexterity: number;
     public iConstitution: number;
     public iIntelligence: number;
     public iWisdom: number;
     public iCharisma: number;
-    public iSpeed: number;
-    public aSkillModifiers: Map<Skills, number>;
+    public aSpeed: [SpeedTypes, number][];
+    public aSkillModifiers: [Skills, number][];
     public iProficiencyBonus: number;
     public aDamageResistances: Array<DamageType>;
     public aDamageImmunities: Array<DamageType>;
     public aConditionImmunities: Array<Conditions>;
 
+    //TODO: Add Species
     //TODO: Add actions
+    //TODO: Add languages
+    //TODO: Add Spells
+    //TODO: Add Spell slots
+    //TODO: Add Senses
+    //TODO: Add Saving throw modifier
+
+
+    //TODO: It would be cool to see if we can load an entity in from camera
     constructor(
         _sName: string,
         _iHealth: number,
-        _ArmorClass: number,
+        _iArmorClass: number,
         _iStrength: number,
         _iDexterity: number,
         _iConstitution: number,
         _iIntelligence: number,
         _iWisdom: number,
         _iCharisma: number,
-        _iSpeed: number,
-        _aSkillModifiers: Map<Skills, number>,
+        _aSpeed: [SpeedTypes, number][],
+        _aSkillModifiers: [Skills, number][],
         _iProficiencyBonus: number,
         _aDamageResistances: Array<DamageType>,
         _aDamageImmunities: Array<DamageType>,
@@ -219,15 +236,16 @@ export class Entity
     {
         this.sName = _sName;
         this.iHealth = _iHealth;
-        this.ArmorClass = _ArmorClass;
+        this.iArmorClass = _iArmorClass;
         this.iStrength = _iStrength;
         this.iDexterity = _iDexterity;
         this.iConstitution = _iConstitution;
         this.iIntelligence = _iIntelligence;
         this.iWisdom = _iWisdom;
         this.iCharisma = _iCharisma;
-        this.iSpeed = _iSpeed;
+        this.aSpeed = _aSpeed;
         this.aSkillModifiers = _aSkillModifiers;
+        //TODO: Is proficiency bonus a thing?
         this.iProficiencyBonus = _iProficiencyBonus;
         this.aDamageResistances = _aDamageResistances;
         this.aDamageImmunities = _aDamageImmunities;

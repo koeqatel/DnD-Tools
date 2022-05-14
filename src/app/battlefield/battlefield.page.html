@@ -1,15 +1,19 @@
 <ion-header>
-  <ion-toolbar style="display: flex">
-    <ion-title> 
-      battlefield
-    </ion-title>
-    <ion-button (click)="createEntity()" style="float: right">+</ion-button>
-    <ion-button (click)="getAllEntities()" style="float: right">?</ion-button>
-    <ion-button (click)="clearStorage()" style="float: right">X</ion-button>
+    <ion-toolbar style="display: flex">
+        <ion-title>
+            battlefield
+        </ion-title>
+        <ion-button (click)="createEntity()" style="float: right">+</ion-button>
+        <ion-button (click)="getAllEntities()" style="float: right">?</ion-button>
+        <ion-button (click)="clearStorage()" style="float: right">X</ion-button>
 
-  </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <entity-component></entity-component>
+<ion-content id="entity-list">
+    <ion-list>
+        <ion-item *ngFor="let oSingleEntity of aEntities">
+            <entity [oEntity]="oSingleEntity"></entity>
+        </ion-item>
+    </ion-list>
 </ion-content>

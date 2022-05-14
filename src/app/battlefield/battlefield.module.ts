@@ -8,6 +8,8 @@ import { BattlefieldPageRoutingModule } from './battlefield-routing.module';
 
 import { BattlefieldPage } from './battlefield.page';
 
+import { EntityComponent } from 'src/components/entity/entity.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { BattlefieldPage } from './battlefield.page';
     IonicModule,
     BattlefieldPageRoutingModule
   ],
-  declarations: [BattlefieldPage]
+  declarations: [BattlefieldPage, EntityComponent]
 })
 export class BattlefieldPageModule {}

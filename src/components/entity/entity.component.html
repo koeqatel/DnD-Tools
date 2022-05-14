@@ -1,3 +1,69 @@
-<p>
-  entity works!
-</p>
+<div id="entity-item">
+    <div>
+        <div id="entity-name">
+            {{aReadableEntity["sName"]}}
+        </div>
+        <div id="entity-top-stats">
+            <div>
+                <div>HP/Max HP</div>
+                <div>AC</div>
+            </div>
+            <div>
+                <div>{{iHealthLeft}}/{{aReadableEntity["iHealth"]}}</div>
+                <div>{{aReadableEntity["iArmorClass"]}}</div>
+            </div>
+        </div>
+        <div id="entity-speed">
+            <div>
+                <div *ngFor="let aSpeed of aReadableEntity['aSpeed']">{{aSpeed[0]}}</div>
+            </div>
+            <div>
+                <div *ngFor="let aSpeed of aReadableEntity['aSpeed']">{{aSpeed[1]}}</div>
+            </div>
+        </div>
+        <div id="entity-stats">
+            <div>
+                <div>Str</div>
+                <div>Dex</div>
+                <div>Con</div>
+                <div>Int</div>
+                <div>Wis</div>
+                <div>Cha</div>
+            </div>
+            <div>
+                <div>{{aReadableEntity["iStrength"]}}</div>
+                <div>{{aReadableEntity["iDexterity"]}}</div>
+                <div>{{aReadableEntity["iConstitution"]}}</div>
+                <div>{{aReadableEntity["iIntelligence"]}}</div>
+                <div>{{aReadableEntity["iWisdom"]}}</div>
+                <div>{{aReadableEntity["iCharisma"]}}</div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="condition-immunities" class="list" *ngIf="aReadableEntity['aConditionImmunities'].length > 0">
+            <div>Condition Immunities</div>
+            <div *ngFor="let aConditionImmunity of aReadableEntity['aConditionImmunities']">
+                {{aConditionImmunity}}
+            </div>
+        </div>
+        <div id="damage-immunities" class="list" *ngIf="aReadableEntity['aDamageImmunities'].length > 0">
+            <div>Damage Immunities</div>
+            <div *ngFor="let aDamageImmunity of aReadableEntity['aDamageImmunities']">
+                {{aDamageImmunity}}
+            </div>
+        </div>
+        <div id="damage-resistances" class="list" *ngIf="aReadableEntity['aDamageResistances'].length > 0">
+            <div>Damage Resistances</div>
+            <div *ngFor="let aDamageResistance of aReadableEntity['aDamageResistances']">
+                {{aDamageResistance}}
+            </div>
+        </div>
+        <div id="skill-modifiers" class="list" *ngIf="aReadableEntity['aSkillModifiers'].length > 0">
+            <div>Skill Modifiers</div>
+            <div *ngFor="let aSkillModifier of aReadableEntity['aSkillModifiers']">
+                {{aSkillModifier[0]}}: {{aSkillModifier[1]}}
+            </div>
+        </div>
+    </div>
+</div>

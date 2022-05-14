@@ -1,0 +1,87 @@
+#entity-item {
+    margin: 6px 0 8px 0;
+    display: flex;
+    white-space: nowrap;
+
+    div {
+        margin: 0 2px;
+
+        div {
+            margin: 0 0 4px 0;
+
+            div {
+                margin: 0;
+            }
+        }
+    }
+}
+
+#entity-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#entity-top-stats div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 8px;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+}
+
+#entity-speed div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+}
+
+#entity-stats div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+}
+
+.list {
+
+    div {
+        border: 1px solid black;
+    }
+
+}
+
+#condition-immunities {
+    color: seagreen;
+}
+
+#damage-immunities {
+    color: red;
+}
+
+#damage-resistances {
+    color: orange;
+}
+
+#skill-modifiers {
+    color: cyan;
+}
